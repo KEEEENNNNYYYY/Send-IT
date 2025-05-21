@@ -1,0 +1,12 @@
+openapi: '3.0.3'
+info:
+  title: Send'IT API
+  version: '1.0'
+servers:
+  - url: http://localhost:5000/
+paths:
+  /:
+    get:
+      responses:
+        '200':
+          description: OK

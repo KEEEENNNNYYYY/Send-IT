@@ -4,9 +4,21 @@ info:
   version: '1.0'
 servers:
   - url: http://localhost:5000/
+tags:
+  - name: Home
+    description: Default route
+  - name: Auth
+    description: Operations related to user authentication
+  - name: Users
+    description: User profile and search operations
+  - name: Messages
+    description: Private messaging and conversation handling
+  - name: Groups
+    description: Group chat creation and management
 paths:
   /:
     get:
+      tags: [Home]
       summary: Home route
       responses:
         '200':
@@ -14,6 +26,7 @@ paths:
 
   /auth/register:
     post:
+      tags: [Auth]
       summary: Register a new user
       requestBody:
         required: true
@@ -39,6 +52,7 @@ paths:
 
   /auth/login:
     post:
+      tags: [Auth]
       summary: Log in a user
       requestBody:
         required: true
@@ -62,6 +76,7 @@ paths:
 
   /users/{id}:
     get:
+      tags: [Users]
       summary: Find a user by ID
       parameters:
         - name: id
@@ -77,6 +92,7 @@ paths:
 
   /users/search:
     get:
+      tags: [Users]
       summary: Search for users to start a conversation
       parameters:
         - name: query
@@ -92,6 +108,7 @@ paths:
 
   /messages/private:
     post:
+      tags: [Messages]
       summary: Send a private message (creates chat if not exists)
       requestBody:
         required: true
@@ -113,6 +130,7 @@ paths:
 
   /messages/private/{id}:
     delete:
+      tags: [Messages]
       summary: Delete a private message (sent by current user)
       parameters:
         - name: id
@@ -130,6 +148,7 @@ paths:
 
   /messages/conversations:
     get:
+      tags: [Messages]
       summary: Get list of user's conversations
       responses:
         '200':
@@ -137,6 +156,7 @@ paths:
 
   /groups:
     post:
+      tags: [Groups]
       summary: Create a new group chat
       requestBody:
         required: true
@@ -160,6 +180,7 @@ paths:
 
   /groups/{groupId}/members:
     post:
+      tags: [Groups]
       summary: Add users to a group chat
       parameters:
         - name: groupId

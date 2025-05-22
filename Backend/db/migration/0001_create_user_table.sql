@@ -4,5 +4,6 @@ CREATE TABLE "user" (
     last_name VARCHAR NOT NULL,
     birthday DATE NOT NULL,
     numeric_id SERIAL UNIQUE NOT NULL,
-    location VARCHAR
+    location VARCHAR,
+    creation_date DATE
 );

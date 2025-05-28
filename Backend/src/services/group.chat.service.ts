@@ -1,5 +1,5 @@
 
-import { getAll } from '../models/groupChat.model';
+import { getAll } from '../models/group.chat.model';
 
 export async function getAllGroupChat(page : number,size:number){
 

@@ -68,14 +68,17 @@ const Dashboard = () => {
     const currentContact = contacts.find(contact => contact.id === selectedContact);
 
     return (
-        <DashboardView
+        <>
+
+            <DashboardView
             contacts={contacts}
             selectedContact={selectedContact}
             onSelectContact={setSelectedContact}
             contact={currentContact}
             messages={messages}
-            onSendMessage={handleSendMessage}
-        />
+            onSendMessage={handleSendMessage}/>
+        </>
+
     );
 };
 

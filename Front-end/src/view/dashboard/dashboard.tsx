@@ -42,12 +42,14 @@ const DashboardView = ({
                 contacts={contacts}
                 selectedContact={selectedContact}
                 onSelectContact={onSelectContact}
+
             />
             <ChatWindow
                 contact={contact}
                 messages={messages}
                 onSendMessage={onSendMessage}
             />
+
         </div>
     );
 };

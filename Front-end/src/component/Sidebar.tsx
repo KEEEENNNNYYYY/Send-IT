@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import LogoutButton from "./logOutButton.tsx";
 
 interface Contact {
     id: string;
@@ -66,6 +67,7 @@ const Sidebar: React.FC<SidebarProps> = ({ contacts, selectedContact, onSelectCo
                     </div>
                 ))}
             </div>
+            <LogoutButton/>
         </div>
     );
 };

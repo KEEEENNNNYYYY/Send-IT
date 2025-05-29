@@ -23,7 +23,7 @@ const Login: React.FC = () => {
       console.log("Utilisateur connecté :", user);
       if (user) {
         setSuccessMessage(`Bienvenue ${user.email}`);
-        navigate("/dashboard");
+        navigate("/");
       }
     } catch (err: any) {
       console.error("Erreur de connexion :", err.message);

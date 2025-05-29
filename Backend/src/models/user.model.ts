@@ -12,15 +12,24 @@ export async function getByNumericId(id: number) {
   }
 }
 
-export async function createUserQuery(id: string, first_name: string, last_name: string, birthday: Date, location: string) {
+export async function createUserQuery(
+    id: string,
+    first_name: string,
+    last_name: string,
+    birthday: Date,
+    email: string,
+    location: string
+) {
   const query =
-    "INSERT INTO \"user\" (id,first_name,last_name,birthday,location,creation_date) VALUES ($1,$2,$3,$4,$5,$6) RETURNING id,first_name,last_name,birthday,numeric_id ,location,creation_date";
+      'INSERT INTO "user" (id, first_name, last_name, birthday, email, location, creation_date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, first_name, last_name, birthday, email, numeric_id, location, creation_date';
+
   try {
     const res = await pool.query(query, [
       id,
       first_name,
       last_name,
       birthday,
+      email,
       location,
       new Date(),
     ]);
@@ -28,5 +37,5 @@ export async function createUserQuery(id: string, first_name: string, last_name:
   } catch (error) {
     winston.error("error", error);
   }
-
 }
+

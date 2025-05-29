@@ -8,7 +8,14 @@ export async function getUserByNumericId (id : number){
     return userInfo;
 }
 
-export async function createUser(id: string, first_name: string, last_name: string, birthday: Date, location: string){
-    const userInfo = await createUserQuery(id, first_name, last_name, birthday, location);
+export async function createUser(
+    id: string,
+    first_name: string,
+    last_name: string,
+    birthday: Date,
+    email: string,
+    location: string
+) {
+    const userInfo = await createUserQuery(id, first_name, last_name, birthday, email, location);
     return userInfo;
 }

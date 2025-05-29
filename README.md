@@ -8,4 +8,5 @@
 
 **  **
 # To do : 
-create user from back end --> then finish feature of login 
+get all user from back end 
+send message to user inside all user list

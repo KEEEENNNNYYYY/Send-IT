@@ -24,5 +24,7 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src", "firebase.js"]
+  "include": ["src",
+    "firebase"
+  ]
 }

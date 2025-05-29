@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './logic/login';
+import Login from './logic/login/login.tsx';
 import Dashboard from './logic/dashboard/dashboard.tsx';
 
 const App = () => {

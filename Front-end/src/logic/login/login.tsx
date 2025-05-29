@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
-import LoginView from "../view/login"; 
+// @ts-ignore
+import { auth } from "../../../firebase";
+import LoginView from "../../view/login/login.tsx";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();

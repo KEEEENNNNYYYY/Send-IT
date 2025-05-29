@@ -29,6 +29,7 @@ const Register: React.FC = () => {
                 id: user.uid,
                 first_name: firstName,
                 last_name: lastName,
+                email:email,
                 birthday,
                 location,
             };
@@ -36,7 +37,7 @@ const Register: React.FC = () => {
             await axios.post("http://localhost:5000/api/users", payload);
 
             setSuccessMessage(`Bienvenue ${firstName}, votre compte a été créé.`);
-            navigate("/dashboard");
+            navigate("/");
         } catch (err: any) {
             console.error("Erreur d'inscription :", err.message);
             setError("Erreur lors de la création du compte. Vérifiez les champs.");

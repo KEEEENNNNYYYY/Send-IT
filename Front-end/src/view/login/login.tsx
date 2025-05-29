@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./login.css";
 
-type LoginView = {
+type LoginViewProps = {
   email: string;
   setEmail: (email: string) => void;
   password: string;
@@ -11,51 +12,63 @@ type LoginView = {
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const DumbLogin: React.FC<LoginView> = ({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  error,
-  successMessage,
-  handleLogin,
-}) => {
+const LoginView: React.FC<LoginViewProps> = ({
+                                               email,
+                                               setEmail,
+                                               password,
+                                               setPassword,
+                                               error,
+                                               successMessage,
+                                               handleLogin,
+                                             }) => {
   return (
-    <div>
-      <h2>Connexion</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email :</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Mot de passe :</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Se connecter</button>
-      </form>
+      <div className="login-container">
+        <div className="login-card">
+          <h2 className="login-title">Connexion</h2>
+          <p className="login-subtitle">Welcom back</p>
 
-      {error && <p className="error">{error}</p>}
-      {successMessage && <p className="success">{successMessage}</p>}
+          <form className="login-form" onSubmit={handleLogin}>
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input
+                  className="form-input"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="votre@email.com"
+              />
+            </div>
 
-      <p style={{ marginTop: "1rem" }}>
-        Pas encore de compte ?{" "}
-        <Link to="/register" style={{ color: "#007bff", textDecoration: "underline" }}>
-          Inscris-toi ici
-        </Link>
-      </p>
-    </div>
+            <div className="form-group">
+              <label className="form-label">Mot de passe</label>
+              <input
+                  className="form-input"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Entrez votre mot de passe"
+              />
+            </div>
+
+            <button className="submit-button" type="submit">
+              Se connecter
+            </button>
+          </form>
+
+          {error && <div className="error-message">{error}</div>}
+          {successMessage && <div className="success-message">{successMessage}</div>}
+
+          <div className="register-link-container">
+            Pas encore de compte ?{" "}
+            <Link to="/register" className="register-link">
+              Inscris-toi ici
+            </Link>
+          </div>
+        </div>
+      </div>
   );
 };
 
-export default DumbLogin;
+export default LoginView;

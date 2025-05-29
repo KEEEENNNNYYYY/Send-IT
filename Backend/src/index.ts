@@ -4,7 +4,7 @@ import { createServer } from "http";
 
 import groupChatRoutes from "./routes/group.chat.routes";
 import privateChatRoutes from "./routes/private.chat.routes"
-import userServiceRoutes from './routes/user.routes'
+import userRoutes from "./routes/user.routes";
 
 
 const app = express();
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
 app.use('/api/group',groupChatRoutes)
 app.use('/api/chat',privateChatRoutes)
-app.use('/api/profil' , userServiceRoutes )
+app.use('/api/users', userRoutes);
 
 app.listen(port,()=> console.log(`server running on : ${port}`));
 

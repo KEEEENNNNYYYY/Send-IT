@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase";
+// @ts-ignore
+import { auth } from "../../../firebase.ts";
 import LoginView from "../../view/login/login.tsx";
+import Toast from "../../component/Toast"; // Ajuste le chemin si nécessaire
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -33,6 +35,9 @@ const Login: React.FC = () => {
 
   return (
     <div className="container">
+      {successMessage && (
+        <Toast message={successMessage} onClose={() => setSuccessMessage("")} />
+      )}
       <LoginView
         email={email}
         setEmail={setEmail}

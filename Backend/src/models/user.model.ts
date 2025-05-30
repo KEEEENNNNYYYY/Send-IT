@@ -39,3 +39,13 @@ export async function createUserQuery(
   }
 }
 
+export async function getAll(){
+  const query =
+      "SELECT id,first_name,last_name,birthday,numeric_id ,location,creation_date from \"user\" ";
+  try {
+    const res = await pool.query(query);
+    return res.rows;
+  } catch (error) {
+    winston.error("error", error);
+  }
+}

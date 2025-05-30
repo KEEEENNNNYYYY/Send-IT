@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { getUserByNumericId} from "../services/user.service";
 import { createUser }from "../services/user.service";
+import { getAllUser }from "../services/user.service";
 
 export const getUserProfil = async (
     req: Request,
@@ -39,4 +40,13 @@ export const userCreation = async (
     } catch (error) {
         next(error);
     }
+};
+
+export const getAllUserHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const userList = await getAllUser();
+    res.json(userList);
 };

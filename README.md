@@ -8,5 +8,4 @@
 
 **  **
 # To do : 
-get all user from back end 
 send message to user inside all user list

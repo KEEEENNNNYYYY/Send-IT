@@ -1,7 +1,6 @@
 import React from 'react';
-import './profil.css';
-import '../../component/ui-component.css';
-import { User, Hash, Calendar, MapPin, Clock } from 'lucide-react';
+import { User } from 'lucide-react';
+import ProfileView from '../../view/profil/profil';
 
 interface UserData {
   id: string;
@@ -13,20 +12,16 @@ interface UserData {
   creation_date: string;
 }
 
+interface ProfileContainerProps {
+  userId?: number;
+}
+
 const fetchUserData = async (userId: number): Promise<UserData> => {
   const response = await fetch(`http://localhost:5000/api/users/${userId}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch user data: ${response.status}`);
   }
   return response.json();
-};
-
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
 };
 
 const calculateAge = (birthday: string) => {
@@ -40,11 +35,7 @@ const calculateAge = (birthday: string) => {
   return age;
 };
 
-interface ProfileProps {
-  userId?: number;
-}
-
-const Profile: React.FC<ProfileProps> = ({ userId = 3 }) => {
+const ProfileContainer: React.FC<ProfileContainerProps> = ({ userId = 3 }) => {
   const [user, setUser] = React.useState<UserData | null>(null);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -111,111 +102,8 @@ const Profile: React.FC<ProfileProps> = ({ userId = 3 }) => {
   const userAge = calculateAge(user.birthday);
 
   return (
-    <div className="profile-container">
-      <div className="profile-wrapper">
-        <div className="profile-card">
-          {/* Header */}
-          <div className="profile-header">
-            <div className="profile-avatar">
-              <User size={40} />
-            </div>
-            <h2 className="profile-name">
-              {user.first_name} {user.last_name}
-            </h2>
-            <div>
-              <span className="profile-badge">
-                <Hash size={12} style={{ marginRight: '4px' }} />
-                ID: {user.numeric_id}
-              </span>
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="profile-content">
-            <div className="profile-grid">
-              {/* Personal Information */}
-              <div className="profile-section">
-                <h3 className="profile-section-title">Personal Information</h3>
-                <div>
-                  <div className="profile-info-item">
-                    <div className="profile-icon-wrapper profile-icon-blue">
-                      <Calendar size={18} />
-                    </div>
-                    <div className="profile-info-text">
-                      <p className="profile-info-label">Birthday & Age</p>
-                      <p className="profile-info-value">
-                        {formatDate(user.birthday)} ({userAge} years old)
-                      </p>
-                    </div>
-                  </div>
-                  <div className="profile-info-item">
-                    <div className="profile-icon-wrapper profile-icon-green">
-                      <MapPin size={18} />
-                    </div>
-                    <div className="profile-info-text">
-                      <p className="profile-info-label">Location</p>
-                      <p className="profile-info-value">{user.location}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Account Information */}
-              <div className="profile-section">
-                <h3 className="profile-section-title">Account Information</h3>
-                <div>
-                  <div className="profile-info-item">
-                    <div className="profile-icon-wrapper profile-icon-purple">
-                      <User size={18} />
-                    </div>
-                    <div className="profile-info-text">
-                      <p className="profile-info-label">User ID</p>
-                      <p className="profile-info-value profile-info-value-mono">{user.id}</p>
-                    </div>
-                  </div>
-                  <div className="profile-info-item">
-                    <div className="profile-icon-wrapper profile-icon-orange">
-                      <Clock size={18} />
-                    </div>
-                    <div className="profile-info-text">
-                      <p className="profile-info-label">Member Since</p>
-                      <p className="profile-info-value">
-                        {formatDate(user.creation_date)}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="profile-stats">
-              <div className="profile-stats-grid">
-                <div className="profile-stat-item profile-stat-blue">
-                  <p className="profile-stat-number profile-stat-number-blue">{userAge}</p>
-                  <p className="profile-stat-label">Years Old</p>
-                </div>
-                <div className="profile-stat-item profile-stat-green">
-                  <p className="profile-stat-number profile-stat-number-green">{user.numeric_id}</p>
-                  <p className="profile-stat-label">User Number</p>
-                </div>
-                <div className="profile-stat-item profile-stat-purple">
-                  <p className="profile-stat-number profile-stat-number-purple">
-                    {new Date().getFullYear() - new Date(user.creation_date).getFullYear()}
-                  </p>
-                  <p className="profile-stat-label">Years Active</p>
-                </div>
-                <div className="profile-stat-item profile-stat-orange">
-                  <p className="profile-stat-number profile-stat-number-orange">1</p>
-                  <p className="profile-stat-label">Active Profile</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ProfileView user={user} userAge={userAge} />
   );
 };
 
-export default Profile;
+export default ProfileContainer;

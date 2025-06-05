@@ -17,7 +17,11 @@ const ToProfile: React.FC = () => {
 
     return (
         <button onClick={handleRedirection} className="logout-button">
-            profil
+            <img
+                src="/profile-user.png"
+                alt="Se déconnecter"
+                className="logout-icon"
+            />
         </button>
     );
 };

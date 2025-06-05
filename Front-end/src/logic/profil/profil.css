@@ -1,0 +1,351 @@
+
+.profile-container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
+    padding: 1.5rem;
+}
+
+.profile-wrapper {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.profile-card {
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #1f2937;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.profile-header {
+    background: linear-gradient(to right, #2563eb, #4f46e5);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 6rem;
+    height: 6rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    backdrop-filter: blur(2px);
+}
+
+.profile-name {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.profile-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    padding: 0.125rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.profile-badge:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.profile-content {
+    padding: 2rem;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.profile-section {
+    margin-bottom: 1.5rem;
+}
+
+.profile-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-info-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: #f9fafb;
+    margin-bottom: 1rem;
+    transition: background-color 0.2s;
+}
+
+.profile-info-item:hover {
+    background: #f3f4f6;
+}
+
+.profile-icon-wrapper {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+}
+
+.profile-icon-blue {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.profile-icon-green {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.profile-icon-purple {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+.profile-icon-orange {
+    background: #fed7aa;
+    color: #ea580c;
+}
+
+.profile-info-text {
+    flex: 1;
+}
+
+.profile-info-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.profile-info-value {
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.profile-info-value-mono {
+    font-family: 'Courier New', monospace;
+}
+
+.profile-stats {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .profile-stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.profile-stat-item {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.profile-stat-blue {
+    background: #eff6ff;
+}
+
+.profile-stat-green {
+    background: #f0fdf4;
+}
+
+.profile-stat-purple {
+    background: #faf5ff;
+}
+
+.profile-stat-orange {
+    background: #fff7ed;
+}
+
+.profile-stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.profile-stat-number-blue {
+    color: #2563eb;
+}
+
+.profile-stat-number-green {
+    color: #16a34a;
+}
+
+.profile-stat-number-purple {
+    color: #9333ea;
+}
+
+.profile-stat-number-orange {
+    color: #ea580c;
+}
+
+.profile-stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.profile-loading {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
+    padding: 1.5rem;
+}
+
+.profile-loading-wrapper {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.profile-loading-card {
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    background: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.profile-loading-header {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.profile-loading-content {
+    padding: 1.5rem;
+}
+
+.profile-loading-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .profile-loading-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.profile-loading-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.profile-error {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-error-card {
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    background: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-width: 28rem;
+    width: 100%;
+}
+
+.profile-error-content {
+    text-align: center;
+    padding: 2rem;
+}
+
+.profile-error-icon {
+    color: #ef4444;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-error-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.profile-error-message {
+    color: #6b7280;
+}
+
+/* Skeleton Loading Styles */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.skeleton-avatar {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+}
+
+.skeleton-title {
+    height: 2rem;
+    width: 12rem;
+    margin: 0 auto 0.5rem;
+}
+
+.skeleton-subtitle {
+    height: 1rem;
+    width: 8rem;
+    margin: 0 auto;
+}
+
+.skeleton-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+.skeleton-text {
+    height: 1rem;
+    width: 8rem;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

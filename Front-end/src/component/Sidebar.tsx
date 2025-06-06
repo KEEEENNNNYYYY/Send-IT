@@ -1,5 +1,7 @@
-
 import React, { useState } from 'react';
+import LogoutButton from "./logOutButton.tsx";
+import ToProfile from './profilRedirection.tsx';
+import "./ComponentCSS/SideBar.css"
 
 interface Contact {
     id: string;
@@ -66,6 +68,11 @@ const Sidebar: React.FC<SidebarProps> = ({ contacts, selectedContact, onSelectCo
                     </div>
                 ))}
             </div>
+            <div className='aside-bottom'>
+                <ToProfile />
+                <LogoutButton />
+            </div>
+
         </div>
     );
 };

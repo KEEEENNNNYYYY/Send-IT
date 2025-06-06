@@ -5,3 +5,7 @@
 - please create the database localy in terminal
 - when using vscode , installing postgresql extension is recommended 🤌🏽
 - to start the server ``` npm run dev ``` , enjoy ! ✌🏼
+
+**  **
+# To do : 
+send message to user inside all user list

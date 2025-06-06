@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import DashboardView from '../../view/dashboard/dashboard';
 
 interface Contact {
@@ -20,6 +21,7 @@ interface Message {
 
 const Dashboard = () => {
     const [selectedContact, setSelectedContact] = useState<string>('1');
+    const [contacts, setContacts] = useState<Contact[]>([]);
     const [messages, setMessages] = useState<Message[]>([
         { id: '1', text: 'Hey there! How are you doing?', timestamp: '10:30 AM', type: 'received' },
         { id: '2', text: 'I\'m doing great! Thanks for asking. How about you?', timestamp: '10:32 AM', type: 'sent' },
@@ -27,13 +29,35 @@ const Dashboard = () => {
         { id: '4', text: 'That sounds awesome! Would love to hear more about it.', timestamp: '10:35 AM', type: 'sent' },
     ]);
 
-    const [contacts] = useState<Contact[]>([
-        { id: '1', name: 'Sarah Johnson', avatar: 'SJ', status: 'online', lastMessage: 'Pretty good! Just working on some...', time: '10:33 AM', unreadCount: 0 },
-        { id: '2', name: 'Mike Chen', avatar: 'MC', status: 'online', lastMessage: 'Sure, let\'s schedule that for tomorrow', time: '9:45 AM', unreadCount: 2 },
-        { id: '3', name: 'Emma Wilson', avatar: 'EW', status: 'away', lastMessage: 'Thanks for the update!', time: 'Yesterday', unreadCount: 0 },
-        { id: '4', name: 'Alex Rodriguez', avatar: 'AR', status: 'offline', lastMessage: 'Perfect, talk soon', time: 'Yesterday', unreadCount: 1 },
-        { id: '5', name: 'Lisa Zhang', avatar: 'LZ', status: 'online', lastMessage: 'The presentation went really well', time: '2 days ago', unreadCount: 0 },
-    ]);
+    useEffect(() => {
+        const fetchContacts = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/api/users/all");
+                const users = response.data;
+
+                const formattedContacts: Contact[] = users.map((user: any) => {
+                    const fullName = `${user.first_name} ${user.last_name}`;
+                    const avatar = `${user.first_name[0]}${user.last_name[0]}`.toUpperCase();
+
+                    return {
+                        id: user.id,
+                        name: fullName,
+                        avatar: avatar,
+                        status: 'online', // tu peux rendre ça dynamique si tu veux
+                        lastMessage: 'Hello!', // placeholder
+                        time: 'Just now',      // placeholder
+                        unreadCount: 0         // placeholder
+                    };
+                });
+
+                setContacts(formattedContacts);
+            } catch (error) {
+                console.error('Erreur lors du chargement des contacts :', error);
+            }
+        };
+
+        fetchContacts();
+    }, []);
 
     const handleSendMessage = (text: string) => {
         const newMessage: Message = {
@@ -44,7 +68,6 @@ const Dashboard = () => {
         };
         setMessages(prev => [...prev, newMessage]);
 
-        // Simulate received message after 2 seconds
         setTimeout(() => {
             const responses = [
                 'That\'s really interesting!',

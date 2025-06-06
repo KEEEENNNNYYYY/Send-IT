@@ -31,9 +31,9 @@ export async function saveChat(privateChat : private_chat){
         
         const query = 'INSERT INTO private_chat (id,first_user_id,second_user_id,creation_date) VALUES ($1,$2,$3,$4) ON CONFLICT DO NOTHING RETURNING id,first_user_id,second_user_id,creation_date';
         const values = [privateChat.id,privateChat.first_user,privateChat.second_user,privateChat.creation_date];
-        const res = await pool.query(query,values)
-        return res.rows[0]
+        const res = await pool.query(query,values);
+        return res.rows[0];
     } catch (error) {
-        
+        winston.error('error',error);
     }
 }

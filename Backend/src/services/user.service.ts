@@ -1,11 +1,14 @@
-import { getByNumericId  } from '../models/user.model';
+import { getByNumericId, getByUserId } from '../models/user.model';
 import { createUserQuery } from '../models/user.model';
 import { getAll } from '../models/user.model';
 
-export async function getUserByNumericId (id : number){
+export async function getUserByNumericId(id: number) {
+    const userInfo = await getByNumericId(id);
+    return userInfo;
+}
 
-    const userInfo =   await getByNumericId(id);
-
+export async function getUserById(id: string) {
+    const userInfo = await getByUserId(id);
     return userInfo;
 }
 
@@ -21,9 +24,7 @@ export async function createUser(
     return userInfo;
 }
 
-export async function getAllUser (){
-
-    const userList =   await getAll();
-
+export async function getAllUser() {
+    const userList = await getAll();
     return userList;
 }

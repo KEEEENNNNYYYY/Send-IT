@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { getUserByNumericId} from "../services/user.service";
-import { createUser }from "../services/user.service";
-import { getAllUser }from "../services/user.service";
+import { getUserByNumericId, getUserById } from "../services/user.service";
+import { createUser } from "../services/user.service";
+import { getAllUser } from "../services/user.service";
 
 export const getUserProfil = async (
     req: Request,
@@ -18,6 +18,29 @@ export const getUserProfil = async (
     res.json(userInfo);
 };
 
+export const getUserByIdHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { id } = req.params;
+
+        if (!id) {
+            return res.status(400).json({ error: "Missing user ID" });
+        }
+
+        const userInfo = await getUserById(id);
+
+        if (!userInfo) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        return res.json(userInfo);
+    } catch (error) {
+        next(error);
+    }
+};
 
 export const userCreation = async (
     req: Request,

@@ -49,3 +49,14 @@ export async function getAll(){
     winston.error("error", error);
   }
 }
+
+export async function getByUserId(id: string) {
+  const query =
+      'SELECT id, first_name, last_name, birthday, email, numeric_id, location, creation_date FROM "user" WHERE id = $1';
+  try {
+    const res = await pool.query(query, [id]);
+    return res.rows[0];
+  } catch (error) {
+    winston.error("error", error);
+  }
+}

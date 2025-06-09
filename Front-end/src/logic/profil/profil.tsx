@@ -1,6 +1,7 @@
-import React from 'react';
-import { User } from 'lucide-react';
+import React, {useEffect} from 'react';
 import ProfileView from '../../view/profil/profil';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../../firebase';
 
 interface UserData {
   id: string;
@@ -12,19 +13,15 @@ interface UserData {
   creation_date: string;
 }
 
-interface ProfileContainerProps {
-  userId?: number;
-}
-
-const fetchUserData = async (userId: number): Promise<UserData> => {
-  const response = await fetch(`http://localhost:5000/api/users/${userId}`);
+const fetchUserDataByUid = async (uid: string): Promise<UserData> => {
+  const response = await fetch(`http://localhost:5000/api/users/by-id/${uid}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch user data: ${response.status}`);
   }
   return response.json();
 };
 
-const calculateAge = (birthday: string) => {
+const calculateAge = (birthday: string): number => {
   const birthDate = new Date(birthday);
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
@@ -35,75 +32,45 @@ const calculateAge = (birthday: string) => {
   return age;
 };
 
-const ProfileContainer: React.FC<ProfileContainerProps> = ({ userId = 3 }) => {
+const ProfileContainer: React.FC = () => {
   const [user, setUser] = React.useState<UserData | null>(null);
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    setLoading(true);
-    fetchUserData(userId)
-      .then((data) => {
-        setUser(data);
-        setError(null);
-      })
-      .catch((err) => {
-        setError(err.message);
-      })
-      .finally(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      console.log('onAuthStateChanged fired, firebaseUser:', firebaseUser);
+      if (!firebaseUser) {
+        setError('No user logged in');
         setLoading(false);
-      });
-  }, [userId]);
+        return;
+      }
 
-  if (loading) {
-    return (
-      <div className="profile-loading">
-        <div className="profile-loading-wrapper">
-          <div className="profile-loading-card">
-            <div className="profile-loading-header">
-              <div className="skeleton skeleton-avatar"></div>
-              <div className="skeleton skeleton-title"></div>
-              <div className="skeleton skeleton-subtitle"></div>
-            </div>
-            <div className="profile-loading-content">
-              <div className="profile-loading-grid">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="profile-loading-item">
-                    <div className="skeleton skeleton-icon"></div>
-                    <div className="skeleton skeleton-text"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+      try {
+        setLoading(true);
+        const userData = await fetchUserDataByUid(firebaseUser.uid);
+        setUser(userData);
+        setError(null);
+      } catch (err: any) {
+        setError(err.message || 'Failed to fetch user data');
+      } finally {
+        setLoading(false);
+      }
+    });
 
-  if (error) {
-    return (
-      <div className="profile-error">
-        <div className="profile-error-card">
-          <div className="profile-error-content">
-            <div className="profile-error-icon">
-              <User size={48} />
-            </div>
-            <h3 className="profile-error-title">Failed to Load Profile</h3>
-            <p className="profile-error-message">{error}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    return () => unsubscribe();
+  }, []);
+  useEffect(() => {
+    console.log("Profil → user:", user);
+  }, [user]);
 
+  if (loading) return <div className="profile-loading">Loading profile...</div>;
+  if (error) return <div className="profile-error">Error: {error}</div>;
   if (!user) return null;
 
   const userAge = calculateAge(user.birthday);
 
-  return (
-    <ProfileView user={user} userAge={userAge} />
-  );
+  return <ProfileView user={user} userAge={userAge} />;
 };
 
 export default ProfileContainer;

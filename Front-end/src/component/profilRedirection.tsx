@@ -8,7 +8,6 @@ const ToProfile: React.FC = () => {
 
     const handleRedirection = async () => {
         try {
-            await signOut(auth);
             navigate("/profil");
         } catch (error) {
             console.error("Erreur de déconnexion :", error);

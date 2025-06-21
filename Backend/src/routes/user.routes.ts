@@ -1,14 +1,19 @@
 import { Router } from "express";
-import { getUserProfil, userCreation , getAllUserHandler } from "../controllers/user.controller";
+import {
+    getUserProfil,
+    getUserByIdHandler,
+    userCreation,
+    getAllUserHandler
+} from "../controllers/user.controller";
 
 const router = Router();
 
+router.get('/all', getAllUserHandler);
 
-router.get('/all',getAllUserHandler)
-// @ts-ignore
+router.get('/by-id/:id', getUserByIdHandler);
+
 router.get('/:id', getUserProfil);
-// @ts-ignore
-router.post('/', userCreation);
 
+router.post('/', userCreation);
 
 export default router;

@@ -1,17 +1,15 @@
 import { NextFunction, Request, Response } from "express";
-import { getBySenderIdParams } from "../types/private.chat.content";
-import { getBySenderId } from "../services/private.chat.content.service";
+import { getPrivateMessageParams } from "../types/private.chat.content";
+import { getPrivateMessage } from "../services/private.chat.content.service";
 
-export const getBySenderIdHandler = async (req : Request<{},{},{},getBySenderIdParams>,res : Response,next : NextFunction)=>{
+export const getPrivateMessageHandler = async (req : Request<{},{},{},getPrivateMessageParams>,res : Response,next : NextFunction)=>{
     try {
         
-        const senderId = req.query.senderId;
-        
-        const content = await getBySenderId(senderId.toString());
+        const params = req.query;
+        const content = await getPrivateMessage(params);
         
         res.json(content)
     } catch (error) {
-        
         next(error)
     }
 

@@ -7,6 +7,7 @@ export interface Private_content_to_save {
     sending_date : Date,
     private_chat : private_chat 
 }
-export interface getBySenderIdParams {
-    senderId : number
+export interface getPrivateMessageParams {
+    senderId : number,
+    privateChatId : string
 }

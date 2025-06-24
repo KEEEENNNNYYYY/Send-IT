@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { getPrivateMessageParams } from "../types/private.chat.content";
+import { getPrivateMessageParams } from "../types/private.chat.content.type";
 import { getPrivateMessage,saveContent } from "../services/private.chat.content.service";
 import { createMessageBody } from "../types/requestBody";
 

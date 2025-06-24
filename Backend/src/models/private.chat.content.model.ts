@@ -1,6 +1,6 @@
 import winston from "winston";
 import { pool } from "../config/db";
-import { Private_content_to_save } from "../types/private.chat.content";
+import { Private_content_to_save } from "../types/private.chat.content.type";
 
 export async function getBySenderId(sender_id: string) {
   const query =

@@ -3,9 +3,8 @@ import { User } from "./user.type";
 
 export interface Private_content_to_save {
     content : string ,
-    sender : User,
-    sending_date : Date,
-    private_chat : private_chat 
+    senderId : number,
+    privateChatId : string
 }
 export interface getPrivateMessageParams {
     senderId : number,

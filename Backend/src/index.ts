@@ -1,7 +1,6 @@
 import groupChatRoutes from "./routes/group.chat.routes";
 import privateChatRoutes from "./routes/private.chat.routes"
 import userRoutes from "./routes/user.routes";
-import privateContentRoutes from "./routes/private.chat.content.routes"
 import { json } from "express";
 import cors from "cors";
 import express from "express"
@@ -20,7 +19,6 @@ app.get("/", (req, res) => {
 app.use('/api/group',groupChatRoutes)
 app.use('/api/chat',privateChatRoutes)
 app.use('/api/users', userRoutes);
-app.use('/api/chat/content',privateContentRoutes)
 app.listen(port,()=> console.log(`server running on : ${port}`));
 
 export default app;

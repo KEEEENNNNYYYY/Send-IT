@@ -19,6 +19,7 @@ interface Message {
     type: 'sent' | 'received';
 }
 
+
 const Dashboard = () => {
     const [selectedContact, setSelectedContact] = useState<string>('1');
     const [contacts, setContacts] = useState<Contact[]>([]);

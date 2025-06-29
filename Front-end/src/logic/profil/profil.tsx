@@ -1,7 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ProfileView from '../../view/profil/profil';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../../firebase';
 import { useAuthProvider } from '../../hooks/useAuth';
 
 export interface UserData {

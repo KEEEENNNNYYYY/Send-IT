@@ -86,8 +86,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ contact, messages, onSendMessag
             </div>
 
             <div className="messages-container">
-                {messages.map(message => (
-                    <MessageBubble key={message.id} message={message} />
+                {messages.map((message,index) => (
+                    <MessageBubble key={index} message={message} />
                 ))}
                 <div ref={messagesEndRef} />
             </div>

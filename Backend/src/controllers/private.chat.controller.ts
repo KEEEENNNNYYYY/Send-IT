@@ -5,6 +5,7 @@ import {
   savePrivateChat,
 } from "../services/private.chat.service";
 import { privateChatToSave } from "../types/private.chat.type";
+import winston from "winston";
 
 export const getPrivateChatHandler = async (
   req: Request<{}, {}, {}, PrivateChatQueryParams>,
@@ -16,7 +17,7 @@ export const getPrivateChatHandler = async (
     const second_id = req.query.second_user_id;
 
     const private_chat = await getByUsersNumericIds(first_id, second_id);
-
+    // winston.info("returns",private_chat)
     res.json(private_chat);
   } catch (error) {
     next(error);
@@ -30,8 +31,8 @@ export const savePrivateChatHandler = async (
 ) => {
   try {
     const privateChat = req.body;
-
     const savedChat = await savePrivateChat(privateChat);
+     winston.info("body",savedChat)
     res.json(savedChat);
   } catch (error) {
     next(error);

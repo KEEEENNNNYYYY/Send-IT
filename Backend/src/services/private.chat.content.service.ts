@@ -5,10 +5,13 @@ import { private_chat_content } from "../types/private.chat.content.type";
 
 export async function getPrivateMessage(params : getPrivateMessageParams){
     try {
-        const chat_content = await privateContentModel.getBySenderId(params.senderId.toString());
+        const chat_content = await privateContentModel.getBySenderId(params.senderId.toString(),params.privateChatId.toString());
         winston.info("content ",chat_content)
-        const filteredContent = chat_content.filter((content : private_chat_content)=>content.privateChatId == params.privateChatId)
-        return filteredContent;
+        return chat_content.map((content)=>({
+            id : content.id,
+            timestamp : content.sending_date,
+            text : content.content 
+        }));
     } catch (error) {
         winston.error("error :"+error)
     }

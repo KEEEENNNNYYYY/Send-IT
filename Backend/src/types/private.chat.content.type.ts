@@ -14,3 +14,8 @@ export interface private_chat_content{
     content : string,
     sendingDate : Date
 }
+export interface private_chat_content_dto{
+    id : string,
+    timestamp : string,
+    text : string
+}

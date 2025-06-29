@@ -10,8 +10,8 @@ export const getByUsersNumericIds = async (
     const first_id = Math.min(first_user_id, second_user_id);
     const second_id = Math.max(first_user_id, second_user_id);
     winston.level = "debug";
-    winston.info(first_id.toString());
-    winston.info(second_id.toString());
+   // winston.info(first_id.toString());
+   // winston.info(second_id.toString());
     const private_chat = await getByUsersNumericId(first_id, second_id);
     return private_chat;
   } catch (error) {
@@ -24,6 +24,8 @@ export const savePrivateChat = async (privateChatToSave: privateChatToSave) => {
     let firstUserId = privateChatToSave.firstUserId;
     let secondUserId = privateChatToSave.secondUserId;
     let privateChatComplete: privateChatToSave;
+    // winston.info("user id 1",privateChatToSave.firstUserId)
+    // winston.info("user id 2",secondUserId)
     if (
       privateChatToSave.firstUserId != null &&
       privateChatToSave.secondUserId != null

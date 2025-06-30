@@ -58,7 +58,7 @@ const Dashboard = () => {
 
   return (
     <DashboardView
-      contacts={contacts}
+      contacts={contacts.filter((c)=>c.numeric_id!=userData?.numeric_id)}
       selectedContact={selectedContact}
       onSelectContact={setSelectedContact}
       contact={currentContact}

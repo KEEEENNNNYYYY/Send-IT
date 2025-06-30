@@ -23,7 +23,7 @@ export async function getByUsersNumericId(
     };
     return chat;
   } catch (error) {
-    winston.log("", values.toString());
+    // winston.log("", values.toString());
 
     winston.error("error", error);
   }

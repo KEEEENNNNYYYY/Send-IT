@@ -9,9 +9,6 @@ export const getByUsersNumericIds = async (
   try {
     const first_id = Math.min(first_user_id, second_user_id);
     const second_id = Math.max(first_user_id, second_user_id);
-    winston.level = "debug";
-   // winston.info(first_id.toString());
-   // winston.info(second_id.toString());
     const private_chat = await getByUsersNumericId(first_id, second_id);
     return private_chat;
   } catch (error) {

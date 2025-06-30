@@ -20,6 +20,7 @@ export const savePrivateMessageHandler = async (req : Request<{privateChatId:str
 
     try {
         
+        
         const privateChatId = req.params.privateChatId;
         const messageBody = req.body;
         const content_to_save = {...messageBody,privateChatId:privateChatId}

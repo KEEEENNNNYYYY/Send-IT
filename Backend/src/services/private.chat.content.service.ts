@@ -6,7 +6,7 @@ import { private_chat_content } from "../types/private.chat.content.type";
 export async function getPrivateMessage(params : getPrivateMessageParams){
     try {
         const chat_content = await privateContentModel.getBySenderId(params.senderId.toString(),params.privateChatId.toString());
-        winston.info("content ",chat_content)
+       // winston.info("content ",chat_content)
         return chat_content.map((content)=>({
             id : content.id,
             timestamp : content.sending_date,

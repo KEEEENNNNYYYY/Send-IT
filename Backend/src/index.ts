@@ -4,9 +4,10 @@ import userRoutes from "./routes/user.routes";
 import { json } from "express";
 import cors from "cors";
 import express from "express";
+import { createServer } from "http";
+import { setupSocket } from "./socket";
 const app = express();
-const port = process.env.PORT;
-
+const port = process.env.PORT|| 5000;
 app.use(cors());
 app.use(json());
 
@@ -17,6 +18,13 @@ app.get("/", (req, res) => {
 app.use("/api/group", groupChatRoutes);
 app.use("/api/chat", privateChatRoutes);
 app.use("/api/users", userRoutes);
-app.listen(port, () => console.log(`server running on : ${port}`));
+
+const server = createServer(app);
+
+setupSocket(server)
+
+server.listen(port, () => console.log(`server running on : ${port}`));
+
+
 
 export default app;

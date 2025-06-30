@@ -5,5 +5,5 @@ CREATE TABLE private_chat_content (
     content VARCHAR NOT NULL,
     FOREIGN KEY (private_chat_id) REFERENCES private_chat(id),
     FOREIGN KEY (sender_id) REFERENCES "user"(numeric_id),
-    sending_date DATE
+    sending_date TIMESTAMP
 );

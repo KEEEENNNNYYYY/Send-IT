@@ -37,9 +37,5 @@ export function useAuthProvider() {
     console.log("error", error);
   }
 
-  return {
-    userData,
-    loading,
-    error,
-  };
+  return {userData}
 }

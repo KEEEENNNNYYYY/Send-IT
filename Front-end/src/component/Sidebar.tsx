@@ -7,7 +7,7 @@ interface Contact {
     id: string;
     name: string;
     avatar: string;
-    status: 'online' | 'away' | 'offline';
+    status: 'away' | 'online' | 'offline';
     lastMessage: string;
     time: string;
     unreadCount: number;

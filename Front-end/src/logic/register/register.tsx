@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase";
 import axios from "axios";
 import RegisterView from "../../view/register/register.tsx";
+import { api_url } from "../../api/chat.ts";
 
 const Register: React.FC = () => {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Register: React.FC = () => {
                 location,
             };
 
-            await axios.post("http://localhost:5000/api/users", payload);
+            await axios.post(api_url+"/api/users", payload);
 
             setSuccessMessage(`Bienvenue ${firstName}, votre compte a été créé.`);
             navigate("/");

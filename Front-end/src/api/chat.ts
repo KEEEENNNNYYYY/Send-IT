@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const api_url = process.env.api_url || "http://localhost:5000"
+export const api_url = process.env.api_url || "sendit-production-87d4.up.railway.app"
 
 export const getOrCreatePrivateChat = async (firstUserId: number|undefined, secondUserId: number|undefined) => {
   const res = await axios.get(api_url+"/api/chat", {

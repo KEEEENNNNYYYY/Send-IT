@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfileView from '../../view/profil/profil';
 import { useAuthProvider } from '../../hooks/useAuth';
+import { api_url } from '../../api/chat';
 
 export interface UserData {
   id: string;
@@ -13,7 +14,7 @@ export interface UserData {
 }
 
 export const fetchUserDataByUid = async (uid: string): Promise<UserData> => {
-  const response = await fetch(`http://localhost:5000/api/users/by-id/${uid}`);
+  const response = await fetch(api_url+`/api/users/by-id/${uid}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch user data: ${response.status}`);
   }

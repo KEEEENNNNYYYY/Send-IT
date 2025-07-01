@@ -8,7 +8,6 @@ RUN npm install
 COPY . .
 
 RUN npm run build
-RUN ls -la dist
 
 FROM node:18-slim
 
@@ -18,6 +17,6 @@ COPY package*.json ./
 RUN npm install --omit=dev
 
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/db ./db    # <== copie le dossier SQL
+COPY --from=builder /app/db ./db
 
 CMD ["sh", "-c", "npm run migrate && npm start"]

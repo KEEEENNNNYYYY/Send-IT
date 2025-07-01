@@ -1,5 +1,4 @@
 import { Server } from "socket.io";
-import { handleChatSocket } from "./sockets/chat";
 import { savePrivateContent } from "./models/private.chat.content.model";
 import { Private_content_to_save } from "./types/private.chat.content.type";
 

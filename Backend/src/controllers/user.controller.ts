@@ -70,6 +70,11 @@ export const getAllUserHandler = async (
     res: Response,
     next: NextFunction
 ) => {
-    const userList = await getAllUser();
-    res.json(userList);
+    try {
+        const userList = await getAllUser();
+        res.json(userList);
+        
+    } catch (error) {
+        next(error)
+    }
 };

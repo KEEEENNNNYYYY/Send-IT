@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const private_chat_controller_1 = require("../controllers/private.chat.controller");
+const private_chat_content_controller_1 = require("../controllers/private.chat.content.controller");
+const router = (0, express_1.Router)();
+router.get('/', private_chat_controller_1.getPrivateChatHandler);
+router.get('/content', private_chat_content_controller_1.getPrivateMessageHandler);
+router.post('/:privateChatId', private_chat_content_controller_1.savePrivateMessageHandler);
+router.post('/', private_chat_controller_1.savePrivateChatHandler);
+exports.default = router;

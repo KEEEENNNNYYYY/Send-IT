@@ -30,7 +30,7 @@ const runAllSQLFiles = async (directory: string) => {
 const main = async () => {
   console.log("⏳ Setup DB en cours...");
   // dir name eto le dossier misy an setup ie scripts
-  const sqlFolder = join(__dirname, "../db/migration");
+  const sqlFolder = join(__dirname, "../../../db/migration");
   await runAllSQLFiles(sqlFolder);
   await pool.end();
   console.log("✅ Setup terminé !");

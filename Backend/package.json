@@ -24,8 +24,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
-    "start": "node dist/sr/index.js",
-    "migrate": "node dist/scripts/setup.js"
+    "start": "node dist/sr/index.js"
   },
   "keywords": [],
   "author": "",

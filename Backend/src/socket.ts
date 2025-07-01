@@ -6,7 +6,8 @@ import { Private_content_to_save } from "./types/private.chat.content.type";
 export function setupSocket(server){
     const io = new Server(server,{
   cors : {
-    origin : "*"
+    origin : "*",
+    methods:["GET","POST"]
   }
 })
 

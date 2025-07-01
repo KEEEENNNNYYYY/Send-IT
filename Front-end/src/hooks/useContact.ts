@@ -14,6 +14,8 @@ export const useContacts = () => {
         const res = await axios.get(api_url+"/api/users/all");
       const users = res.data;
           console.log("users",users);
+          console.log("api url",api_url);
+          
           
       const formatted = users.map((user: any) => ({
         id: user.id,

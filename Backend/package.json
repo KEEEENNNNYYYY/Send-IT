@@ -26,6 +26,10 @@
     "build": "tsc",
     "start": "node dist/sr/index.js"
   },
+  "engines": {
+  "node": "18.x"
+}
+,
   "keywords": [],
   "author": "",
   "license": "ISC",

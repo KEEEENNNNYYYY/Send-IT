@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const api_url = process.env.api_url || "http://localhost:5000/api/chat"
+export const api_url = process.env.api_url || "http://localhost:5000"
 
 export const getOrCreatePrivateChat = async (firstUserId: number|undefined, secondUserId: number|undefined) => {
-  const res = await axios.get(api_url, {
+  const res = await axios.get(api_url+"/api/chat", {
     params: { first_user_id: firstUserId, second_user_id: secondUserId },
   });
 

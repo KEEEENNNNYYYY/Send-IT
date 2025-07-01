@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Contact } from "../types/Contact";
 import { useEffect, useState } from "react";
+import { api_url } from "../api/chat";
 
 export const useContacts = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -10,7 +11,7 @@ export const useContacts = () => {
     
     const fetchContacts = async () => {
         try {
-        const res = await axios.get("http://localhost:5000/api/users/all");
+        const res = await axios.get(api_url+"/api/users/all");
       const users = res.data;
 
       const formatted = users.map((user: any) => ({

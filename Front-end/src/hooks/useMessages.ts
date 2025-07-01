@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Message } from "../types/Message";
 import axios from "axios";
 import { socket } from "../socket";
+import { api_url } from "../api/chat";
 
 export const useChatMessages = (
   chatId: string | undefined,
@@ -16,13 +17,13 @@ export const useChatMessages = (
         if (!chatId) return;
 
         const resSent = await axios.get(
-          "http://localhost:5000/api/chat/content",
+          api_url+"/api/chat/content",
           {
             params: { senderId: userId, privateChatId: chatId },
           }
         );
         const resReceived = await axios.get(
-          "http://localhost:5000/api/chat/content",
+          api_url+"/api/chat/content",
           {
             params: { senderId: contactId, privateChatId: chatId },
           }

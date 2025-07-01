@@ -1,5 +1,6 @@
 import { io } from "socket.io-client"
+import { api_url } from "./api/chat";
 
-const URL = "http://localhost:5000"
 
-export const socket = io(URL);
+
+export const socket = io(api_url);

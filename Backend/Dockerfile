@@ -18,5 +18,6 @@ COPY package*.json ./
 RUN npm install --omit=dev
 
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/db ./db    # <== copie le dossier SQL
 
 CMD ["sh", "-c", "npm run migrate && npm start"]

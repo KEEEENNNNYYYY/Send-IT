@@ -3,4 +3,6 @@ import { api_url } from "./api/chat";
 
 
 
-export const socket = io(api_url);
+export const socket = io(api_url,{
+    transports:["websocket"]
+});

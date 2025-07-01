@@ -13,7 +13,8 @@ export const useContacts = () => {
         try {
         const res = await axios.get(api_url+"/api/users/all");
       const users = res.data;
-
+          console.log("users",users);
+          
       const formatted = users.map((user: any) => ({
         id: user.id,
         name: `${user.first_name} ${user.last_name}`,

@@ -2,6 +2,9 @@ import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { Pool } from "pg";
 import dotenv from "dotenv";
+import { existsSync } from "fs";
+
+
 
 dotenv.config();
 
@@ -28,10 +31,13 @@ const runAllSQLFiles = async (directory: string) => {
 };
 
 const main = async () => {
-  console.log("📂 __dirname:", __dirname);
   console.log("⏳ Setup DB en cours...");
+  console.log("📂 __dirname:", __dirname);
   // dir name eto le dossier misy an setup ie scripts
   const sqlFolder = join(__dirname, "../../db/migration");
+  if (!existsSync(sqlFolder)) {
+  throw new Error(`🔥 Le dossier SQL est introuvable : ${sqlFolder}`);
+}
   console.log("📁 sqlFolder:", sqlFolder);
   await runAllSQLFiles(sqlFolder);
   await pool.end();

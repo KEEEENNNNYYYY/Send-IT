@@ -1,7 +1,7 @@
 import winston from "winston";
 import { pool } from "../config/db";
 import { Private_content_to_save } from "../types/private.chat.content.type";
-
+import crypto from "crypto"
 export async function getBySenderId(sender_id: string,private_chat_id:string) {
   const query =
     "SELECT id,private_chat_id,sender_id,content,sending_date FROM private_chat_content WHERE sender_id=$1 AND private_chat_id=$2";

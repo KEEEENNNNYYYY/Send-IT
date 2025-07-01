@@ -2,7 +2,7 @@ import winston from "winston";
 import { pool } from "../config/db";
 import { privateChat, privateChatToSave } from "../types/private.chat.type";
 import { getByNumericId } from "./user.model";
-
+import crypto from "crypto"
 export async function getByUsersNumericId(
   firstUserId: number,
   secondUserId: number

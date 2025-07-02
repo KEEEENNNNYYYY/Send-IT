@@ -100,7 +100,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ user, userAge,isloading }) =>
                     <div className="profile-info-text">
                       <p className="profile-info-label">Member Since</p>
                       <p className="profile-info-value">
-                        {formatDate(user?.creation_date)}
+                        {formatDate(user?.creation_date||"")}
                       </p>
                     </div>
                   </div>

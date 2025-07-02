@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProfileView from '../../view/profil/profil';
 import { useAuthProvider } from '../../hooks/useAuth';
 import { api_url } from '../../api/chat';
@@ -35,14 +35,18 @@ const calculateAge = (birthday: string): number => {
 const ProfileContainer: React.FC = () => { 
   //@ts-expect-error may cause errors
   const {userData,loading,error}= useAuthProvider();
+  const [isloading , setIsLoading] = useState(loading)
+  const userAge = calculateAge(userData?.birthday|| "");
   console.log(userData);
   
-  if (loading) return <div className="profile-loading">Loading profile...</div>;
-  if (error) return <div className="profile-error">Error: {error}</div>;
-  if (!userData) return <div>nope nope</div>;
-  const userAge = calculateAge(userData?.birthday);
   
-  return <ProfileView user={userData} userAge={userAge} />;
+  // if (loading) return <div className="profile-loading">Loading profile...</div>;
+  if (error) return <div className="profile-error">Error: {error}</div>;
+  if (!userData || loading){
+       return <ProfileView userAge={userAge} isloading={true} />;
+    };
+  
+  return <ProfileView user={userData||undefined} userAge={userAge} />;
 };
 
 export default ProfileContainer;

@@ -5,7 +5,7 @@ import { auth } from "../../firebase";
 
 export function useAuthProvider() {
   const [userData, setUser] = useState<UserData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -19,7 +19,9 @@ export function useAuthProvider() {
       try {
         setLoading(true);
         const userData = await fetchUserDataByUid(firebaseUser.uid);
-        setUser(userData);
+        setTimeout(() => {
+          setUser(userData);
+        }, 2000);
         setError(null);
       } catch (err: any) {
         setError(err.message || "Failed to fetch user data");
@@ -37,5 +39,5 @@ export function useAuthProvider() {
     console.log("error", error);
   }
 
-  return {userData}
+  return { userData };
 }

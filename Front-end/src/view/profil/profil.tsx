@@ -1,7 +1,7 @@
-import React from 'react';
-import './profil.css';
-import '../../component/ui-component.css';
-import { User, Hash, Calendar, MapPin, Clock } from 'lucide-react';
+import React from "react";
+import "./profil.css";
+import "../../component/ui-component.css";
+import { User, Hash, Calendar, MapPin, Clock } from "lucide-react";
 
 interface UserData {
   id: string;
@@ -14,35 +14,36 @@ interface UserData {
 }
 
 interface ProfileViewProps {
-  user: UserData;
+  user?: UserData;
   userAge: number;
+  isloading?: boolean;
 }
 
 const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 };
 
-const ProfileView: React.FC<ProfileViewProps> = ({ user, userAge }) => {
+const ProfileView: React.FC<ProfileViewProps> = ({ user, userAge,isloading }) => {
   return (
-    <div className="profile-container">
-      <div className="profile-wrapper">
-        <div className="profile-card">
+    <div className={`${isloading &&!user?"skeleton profile-container":"profile-container"} `}>
+      <div className="profile-wrapper ">
+        <div className="profile-card ">
           {/* Header */}
-          <div className="profile-header">
-            <div className="profile-avatar">
+          <div className="profile-header ">
+            <div className="profile-avatar ">
               <User size={40} />
             </div>
-            <h2 className="profile-name">
-              {user.first_name} {user.last_name}
+            <h2 className="profile-name ">
+              {user?.first_name} {user?.last_name}
             </h2>
             <div>
               <span className="profile-badge">
-                <Hash size={12} style={{ marginRight: '4px' }} />
-                ID: {user.numeric_id}
+                <Hash size={12} style={{ marginRight: "4px" }} />
+                ID: {user?.numeric_id}
               </span>
             </div>
           </div>
@@ -61,7 +62,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ user, userAge }) => {
                     <div className="profile-info-text">
                       <p className="profile-info-label">Birthday & Age</p>
                       <p className="profile-info-value">
-                        {formatDate(user.birthday)} ({userAge} years old)
+                        {formatDate(user?.birthday|| "")} ({userAge} years old)
                       </p>
                     </div>
                   </div>
@@ -71,7 +72,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ user, userAge }) => {
                     </div>
                     <div className="profile-info-text">
                       <p className="profile-info-label">Location</p>
-                      <p className="profile-info-value">{user.location}</p>
+                      <p className="profile-info-value">{user?.location}</p>
                     </div>
                   </div>
                 </div>
@@ -87,7 +88,9 @@ const ProfileView: React.FC<ProfileViewProps> = ({ user, userAge }) => {
                     </div>
                     <div className="profile-info-text">
                       <p className="profile-info-label">User ID</p>
-                      <p className="profile-info-value profile-info-value-mono">{user.id}</p>
+                      <p className="profile-info-value profile-info-value-mono">
+                        {user?.id}
+                      </p>
                     </div>
                   </div>
                   <div className="profile-info-item">
@@ -97,7 +100,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ user, userAge }) => {
                     <div className="profile-info-text">
                       <p className="profile-info-label">Member Since</p>
                       <p className="profile-info-value">
-                        {formatDate(user.creation_date)}
+                        {formatDate(user?.creation_date)}
                       </p>
                     </div>
                   </div>
@@ -109,21 +112,28 @@ const ProfileView: React.FC<ProfileViewProps> = ({ user, userAge }) => {
             <div className="profile-stats">
               <div className="profile-stats-grid">
                 <div className="profile-stat-item profile-stat-blue">
-                  <p className="profile-stat-number profile-stat-number-blue">{userAge}</p>
+                  <p className="profile-stat-number profile-stat-number-blue">
+                    {userAge}
+                  </p>
                   <p className="profile-stat-label">Years Old</p>
                 </div>
                 <div className="profile-stat-item profile-stat-green">
-                  <p className="profile-stat-number profile-stat-number-green">{user.numeric_id}</p>
+                  <p className="profile-stat-number profile-stat-number-green">
+                    {user?.numeric_id}
+                  </p>
                   <p className="profile-stat-label">User Number</p>
                 </div>
                 <div className="profile-stat-item profile-stat-purple">
                   <p className="profile-stat-number profile-stat-number-purple">
-                    {new Date().getFullYear() - new Date(user.creation_date).getFullYear()}
+                    {new Date().getFullYear() -
+                      new Date(user?.creation_date||"").getFullYear()}
                   </p>
                   <p className="profile-stat-label">Years Active</p>
                 </div>
                 <div className="profile-stat-item profile-stat-orange">
-                  <p className="profile-stat-number profile-stat-number-orange">1</p>
+                  <p className="profile-stat-number profile-stat-number-orange">
+                    1
+                  </p>
                   <p className="profile-stat-label">Active Profile</p>
                 </div>
               </div>

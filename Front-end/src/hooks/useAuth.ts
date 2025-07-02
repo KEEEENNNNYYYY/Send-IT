@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export function useAuthProvider() {
-  const [userData, setUser] = useState<UserData | null>(null);
+  const [userData, setUser] = useState<UserData | null>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {

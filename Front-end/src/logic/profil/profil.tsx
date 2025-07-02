@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ProfileView from "../../view/profil/profil";
 import { useAuthProvider } from "../../hooks/useAuth";
 import { api_url } from "../../api/chat";

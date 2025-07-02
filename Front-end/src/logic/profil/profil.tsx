@@ -36,7 +36,6 @@ const calculateAge = (birthday: string): number => {
 };
 
 const ProfileContainer: React.FC = () => {
-  //@ts-expect-error may cause errors
   const { userData, loading, error } = useAuthProvider();
   const userAge = calculateAge(userData?.birthday || "");
   console.log(userData);

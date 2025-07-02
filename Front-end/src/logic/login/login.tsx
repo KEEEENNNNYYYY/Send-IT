@@ -24,6 +24,7 @@ const Login: React.FC = () => {
 
       console.log("Utilisateur connecté :", user);
       if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
         setSuccessMessage(`Bienvenue ${user.email}`);
         navigate("/");
       }

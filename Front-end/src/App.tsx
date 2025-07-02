@@ -7,9 +7,14 @@ import ProtectedRoutes from "./logic/routes/protectedRoutes.tsx";
 import { useAuthProvider } from "./hooks/useAuth.ts";
 
 const App = () => {
-  //@ts-expect-error nope pas besoin de cet erreur
-  const { userData, loading } = useAuthProvider();
+  const { userData, loading} = useAuthProvider();
   console.log("user ", userData);
+  console.log("loading",loading);
+   if (loading) {
+    return <div>Chargement...</div>; // ou un vrai loader
+  }
+
+  const isConnected = !!userData; 
 
   return (
     <BrowserRouter>
@@ -19,7 +24,7 @@ const App = () => {
         <Route
           element={
             <ProtectedRoutes
-              isConnected={userData == null && loading == true ? false : true}
+              isConnected={isConnected}
             ></ProtectedRoutes>
           }
         >

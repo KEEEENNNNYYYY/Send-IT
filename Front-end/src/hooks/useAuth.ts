@@ -4,27 +4,37 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export function useAuthProvider() {
-  const [userData, setUser] = useState<UserData | null>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [userData, setUser] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
+    const saved = localStorage.getItem("user");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setUser(parsed); // load cached user fast
+      } catch (e) {
+        console.warn("user corrompu dans localStorage");
+        localStorage.removeItem("user");
+      }
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      console.log("onAuthStateChanged fired, firebaseUser:", firebaseUser);
       if (!firebaseUser) {
-        setError("No user logged in");
+        setUser(null);
+        localStorage.removeItem("user");
         setLoading(false);
         return;
       }
 
       try {
-        setLoading(true);
         const userData = await fetchUserDataByUid(firebaseUser.uid);
-        setTimeout(() => {
-          setUser(userData);
-        }, 2000);
+        setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData)); // sync cache
         setError(null);
       } catch (err: any) {
-        setError(err.message || "Failed to fetch user data");
+        setError(err.message || "Erreur lors du chargement du profil");
       } finally {
         setLoading(false);
       }
@@ -32,12 +42,6 @@ export function useAuthProvider() {
 
     return () => unsubscribe();
   }, []);
-  if (loading) {
-    console.log("loading");
-  }
-  if (error) {
-    console.log("error", error);
-  }
 
-  return { userData };
+  return { userData, loading, error };
 }

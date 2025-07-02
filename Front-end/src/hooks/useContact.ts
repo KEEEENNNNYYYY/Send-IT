@@ -22,7 +22,7 @@ export const useContacts = () => {
         name: `${user.first_name} ${user.last_name}`,
         avatar: `${user.first_name[0]}${user.last_name[0]}`.toUpperCase(),
         status: "online",
-        lastMessage: "Hello!",
+        lastMessage: "......",
         time: "Just now",
         unreadCount: 0,
         numeric_id: user.numeric_id,

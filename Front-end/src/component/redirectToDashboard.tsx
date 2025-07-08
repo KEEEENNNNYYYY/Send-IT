@@ -16,8 +16,8 @@ const ToDashboard: React.FC = () => {
         <button onClick={handleRedirection} className="logout-button">
             <img
                 src="/profile-user.png"
-                alt="Se déconnecter"
-                className="logout-icon"
+                alt="dashboard"
+                className="logout-"
             />
         </button>
     );

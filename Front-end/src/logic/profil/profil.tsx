@@ -2,6 +2,8 @@ import React from "react";
 import ProfileView from "../../view/profil/profil";
 import { useAuthProvider } from "../../hooks/useAuth";
 import { api_url } from "../../api/chat";
+import ToDashboard from "../../component/redirectToDashboard";
+
 
 export interface UserData {
   id: string;
@@ -46,7 +48,13 @@ const ProfileContainer: React.FC = () => {
     return <ProfileView userAge={userAge} isloading={true} />;
   }
 
-  return <ProfileView user={userData || undefined} userAge={userAge} />;
+  return (
+  <div>
+    <ProfileView user={userData || undefined} userAge={userAge} />
+    <ToDashboard/>
+  </div>
+
+  );
 };
 
 export default ProfileContainer;
